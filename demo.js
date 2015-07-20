@@ -82,7 +82,7 @@ function getSVGComplex(svgPath, steiners) {
   
   positions = normalizeScale(positions)
   positions.forEach(function (pos) {
-    var size = 800
+    var size = 700
     pos[0] *= size
     pos[1] *= size
     pos[0] += window.innerWidth/2
@@ -119,20 +119,19 @@ var faces = require('array-shuffle')(cells.map(function (p, i) {
   return i
 }))
 var cellIdx = 0
+var total = 0
 
 // if (false)
-marvelStream('comics', {
+marvelStream('characters', {
   publicKey: conf.publicKey,
   privateKey: conf.privateKey,
   query: {
     limit: 100,
-    offset: 200,
+    offset: 100,
     // name: 'Iron Man'
   },
-  pages: 3
+  pages: 4
 }).on('data', function (comic) {
-  console.log(comic)
-  
   var uri = thumbnail(comic)
   if (!uri) return
     
@@ -157,6 +156,7 @@ marvelStream('comics', {
   figure.style.height = (bounds[1][1] - bounds[0][1]) + 'px'
   
   var perc = trianglePercentage(triangle, bounds)
+  total++
   
   var positions = 'polygon(' + [
     perc[0].join(' '),
@@ -192,7 +192,7 @@ marvelStream('comics', {
   //   context.restore()
   // })
 }).on('end', function (blah) {
-  
+  console.log("TOTAL", total)
   app.once('tick', render)
   app.start()
 
