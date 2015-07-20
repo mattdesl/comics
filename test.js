@@ -1,0 +1,1 @@
+require('marvel-comics-api')

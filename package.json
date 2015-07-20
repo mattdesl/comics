@@ -26,7 +26,7 @@
     "gl-vec2": "^1.0.0",
     "img": "^1.0.0",
     "indexof-property": "^1.1.1",
-    "marvel-comics-api": "^1.1.0",
+    "marvel-comics-api": "^1.2.1",
     "marvel-comics-api-stream": "^1.1.1",
     "new-array": "^1.0.0",
     "normalize-path-scale": "^1.1.1",
@@ -50,7 +50,7 @@
   "scripts": {
     "test": "node test.js",
     "start": "budo demo.js:bundle.js --live --verbose -- -t extractify-svg-path | garnish",
-    "build": "browserify demo.js | uglifyjs -cm > bundle.js"
+    "build": "browserify demo.js -t extractify-svg-path | uglifyjs -cm > bundle.js"
   },
   "keywords": [],
   "repository": {
